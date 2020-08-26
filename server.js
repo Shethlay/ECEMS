@@ -17,12 +17,13 @@ const app = express()
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
+
 //it's goes to routes/ECEMS.route folder...............................................................
 app.use('/',ECEMS)
 
 
 //port where our app listen..............................................................................
-let port = 8082
+let port = 8081
 app.listen(port,function(){
 	console.log('server is running on port no:',port)
 })

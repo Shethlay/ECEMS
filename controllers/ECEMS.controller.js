@@ -17,7 +17,7 @@ exports.validate = function(req,res){
 				console.log(err)
 				return res.send(false)
 			}
-			if(!people){
+			if(!peoples){
 				return res.send(false)
 			}
 			if(passwd == Decrypt(peoples.password,id)){
@@ -321,6 +321,7 @@ exports.fetchNotifications = function(req,res){
 						return res.send(false)
 					}
 					if(!doccc){
+						console.log('err')
 						return res.send(false)
 					}
 					return res.send(doccc.notifications)
@@ -329,6 +330,7 @@ exports.fetchNotifications = function(req,res){
 		})
 	}
 	catch(err){
+		console.log(err)
 		res.send(false)
 	}
 }
@@ -640,7 +642,7 @@ exports.sendNotification = function(req,res){
 		var id = req.body.data.id.toString();
     	var msg = req.body.data.msg.toString();
 
-    	 people.findOneAndUpdate({'id':id},{'Designation':1},function(err,data){
+    	 people.findOne({'id':id},function(err,data){
     	 	if(err){
 				console.log(err)
 				return res.send(false)
